@@ -45,6 +45,7 @@ for entry in puzzle_input:
         for number, segments in enumerate(mapping):
             if set(output) == segments:
                 string_number += str(number)
+                break
     output_sum += int(string_number)
 
 print(f"{output_sum=}")
