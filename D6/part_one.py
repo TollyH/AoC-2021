@@ -1,5 +1,6 @@
 with open("input.txt") as file:
     puzzle_input = file.read().strip().split(",")
+    file.close()
 
 fish = [int(x) for x in puzzle_input]
 
