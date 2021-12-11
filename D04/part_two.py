@@ -1,7 +1,8 @@
 with open("input.txt") as file:
     puzzle_input = (file.read().strip().replace("  ", " ")
-        .replace("\n ", "\n").split("\n\n"))
+                    .replace("\n ", "\n").split("\n\n"))
     file.close()
+
 
 def check_win(matrix, numbers):
     for horizontal in board:
@@ -13,14 +14,15 @@ def check_win(matrix, numbers):
             return True
     return False
 
+
 random_sequence = [int(x) for x in puzzle_input[0].split(",")]
-boards = []
-for board in puzzle_input[1:]:
-    boards.append([])
-    for row in board.split("\n"):
-        boards[-1].append([])
-        for item in row.split(" "):
-            boards[-1][-1].append(int(item))
+boards = [
+    [
+        [int(x) for x in y.split(" ")]
+        for y in z.split("\n")
+    ]
+    for z in puzzle_input[1:]
+]
 
 drawn_numbers = []
 
