@@ -11,7 +11,7 @@ def generate_basin(x_coord, y_coord):
             or (x_coord, y_coord) in [x for y in basins for x in y]):
         return
     basins[-1].append((x_coord, y_coord))
-    adjacent = [(x_coord, y_coord)]
+    adjacent = []
     if y_coord >= 1:
         adjacent.append((x_coord, y_coord - 1))
     if y_coord < len(heightmap) - 1:
