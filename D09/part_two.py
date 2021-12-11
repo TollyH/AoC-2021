@@ -5,6 +5,7 @@ with open("input.txt") as file:
 heightmap = [list(x) for x in puzzle_input]
 basins = []
 
+
 def generate_basin(x_coord, y_coord):
     if (heightmap[y_coord][x_coord] == '9'
             or (x_coord, y_coord) in [x for y in basins for x in y]):
@@ -21,6 +22,7 @@ def generate_basin(x_coord, y_coord):
         adjacent.append((x_coord + 1, y_coord))
     for coords in adjacent:
         generate_basin(*coords)
+
 
 for y, row in enumerate(puzzle_input):
     for x, height in enumerate(row):
