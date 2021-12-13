@@ -37,5 +37,5 @@ for instruction in puzzle_input[1].splitlines():
 
 for row in paper:
     for dot in row:
-        print('██' if dot else '░░', end="")
+        print('██' if dot else '  ', end="")
     print()
