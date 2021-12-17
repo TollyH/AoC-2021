@@ -8,7 +8,7 @@ paper_height = int(
     puzzle_input[1].splitlines()[1].split(" ")[2].split("=")[1]) * 2 + 1
 
 coords = [
-    (int(x.split(',')[0]), int(x.split(',')[1]))
+    tuple(map(int, x.split(',')))
     for x in puzzle_input[0].splitlines()
 ]
 paper = [
