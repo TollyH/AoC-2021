@@ -24,16 +24,16 @@ def get_stop_points(init_x_velocity, init_y_velocity):
             x_velocity += 1
         y_velocity -= 1
 
-        if probe_x > target_x_bounds[1]:
+        if probe_x > max(target_x_bounds):
             overshot = True
-        if y_velocity < 0 and probe_y < target_y_bounds[0]:
+        if y_velocity < 0 and probe_y < min(target_y_bounds):
             overshot = True
     return points
 
 
 valid_velocities = {}
-for x in range(1000):
-    for y in range(-1000, 1000):
+for x in range(max(target_x_bounds) + 1):
+    for y in range(min(target_y_bounds) - 1, abs(min(target_y_bounds)) + 1):
         stops = get_stop_points(x, y)
         for point in stops:
             if (point[0] >= target_x_bounds[0]
