@@ -1,6 +1,5 @@
 with open("input.txt") as file:
     puzzle_input = file.read().strip().splitlines()
-    file.close()
 
 octopuses = [[int(x) for x in y] for y in puzzle_input]
 octopuses_count = len(puzzle_input) * len(puzzle_input[0])

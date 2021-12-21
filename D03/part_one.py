@@ -1,6 +1,5 @@
 with open("input.txt") as file:
     puzzle_input = file.read().strip().splitlines()
-    file.close()
 
 gamma_rate_str = ''
 epsilon_rate_str = ''

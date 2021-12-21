@@ -1,6 +1,5 @@
 with open("input.txt") as file:
     puzzle_input = file.read().strip().splitlines()
-    file.close()
 
 cast_puzzle_input = [int(x) for x in puzzle_input]
 

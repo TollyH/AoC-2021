@@ -1,6 +1,5 @@
 with open("input.txt") as file:
     puzzle_input = file.read().strip().split("\n\n")
-    file.close()
 
 template = list(puzzle_input[0])
 unique_elements = {

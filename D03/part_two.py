@@ -1,6 +1,5 @@
 with open("input.txt") as file:
     puzzle_input = file.read().strip().splitlines()
-    file.close()
 
 oxygen_gen_rate_list = puzzle_input.copy()
 c02_scrub_rate_list = puzzle_input.copy()

@@ -1,7 +1,6 @@
 with open("input.txt") as file:
     puzzle_input = (file.read().strip().replace("  ", " ")
                     .replace("\n ", "\n").split("\n\n"))
-    file.close()
 
 
 def check_win(matrix, numbers):

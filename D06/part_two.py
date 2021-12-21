@@ -1,6 +1,5 @@
 with open("input.txt") as file:
     puzzle_input = file.read().strip().split(",")
-    file.close()
 
 fish_spawn = {}
 for fish in puzzle_input:

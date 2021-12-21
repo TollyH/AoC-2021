@@ -1,6 +1,5 @@
 with open("input.txt") as file:
     puzzle_input = file.read().strip().split("\n\n")
-    file.close()
 
 paper_width = int(
     puzzle_input[1].splitlines()[0].split(" ")[2].split("=")[1]) * 2 + 1

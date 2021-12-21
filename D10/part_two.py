@@ -1,6 +1,5 @@
 with open("input.txt") as file:
     puzzle_input = file.read().strip().splitlines()
-    file.close()
 
 openers = {'(': ')', '[': ']', '{': '}', '<': '>'}
 closers = {')': 1, ']': 2, '}': 3, '>': 4}

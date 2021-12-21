@@ -1,6 +1,5 @@
 with open("input.txt") as file:
     puzzle_input = file.read().strip().split("\n\n")
-    file.close()
 
 
 def rotate_point(point, x_rot, y_rot, z_rot):

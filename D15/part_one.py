@@ -1,6 +1,5 @@
 with open("input.txt") as file:
     puzzle_input = file.read()
-    file.close()
 
 cavern = [[int(x) for x in y] for y in puzzle_input.splitlines()]
 
