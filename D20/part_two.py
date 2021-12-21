@@ -21,7 +21,10 @@ output_image = [
 ]
 
 for i in range(50):
-    default = i % 2 == 1 if enhancement[0] else False
+    if enhancement[0]:
+        default = enhancement[0 if i % 2 == 1 else -1]
+    else:
+        default = False
     for y in range(len(output_image)):
         output_image[y] = [default] + output_image[y] + [default]
     output_image.insert(0, [default for _ in output_image[0]])
