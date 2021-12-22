@@ -57,4 +57,4 @@ for (x_bounds, y_bounds, z_bounds), count in cubes.items():
         * count
     )
 
-print(f"{total=}")
+print(total)

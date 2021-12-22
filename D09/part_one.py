@@ -19,4 +19,4 @@ for row_index, row in enumerate(heightmap):
         if min(adjacent) == int(height) and adjacent.count(int(height)) == 1:
             risk_level += int(height) + 1
 
-print(f"{risk_level=}")
+print(risk_level)

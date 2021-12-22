@@ -17,4 +17,4 @@ for line in puzzle_input:
             illegal_score += closers[char]
             break
 
-print(f"{illegal_score=}")
+print(illegal_score)

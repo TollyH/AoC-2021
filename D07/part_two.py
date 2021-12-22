@@ -12,4 +12,4 @@ for target in range(max(positions)):
 
 optimal_target = min(targets, key=lambda x: targets[x])
 
-print(f"Position: {optimal_target}, Fuel: {targets[optimal_target]}")
+print(int(targets[optimal_target]))

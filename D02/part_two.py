@@ -17,4 +17,4 @@ for line in puzzle_input:
     elif instruction == "up":
         aim -= parameter
 
-print(f"{horizontal=} {depth=} {horizontal*depth=}")
+print(horizontal * depth)

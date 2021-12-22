@@ -44,4 +44,4 @@ for x in range(max(target_x_bounds) + 1):
                 break
 
 best_velocity = max(valid_velocities, key=lambda x: valid_velocities[x])
-print(f"{best_velocity=} max_height={valid_velocities[best_velocity]}")
+print(valid_velocities[best_velocity])

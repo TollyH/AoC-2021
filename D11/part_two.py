@@ -46,4 +46,4 @@ while len(already_flashed) != octopuses_count:
         octopuses[y][x] = 0
     i += 1
 
-print(f"{i=}")
+print(i)

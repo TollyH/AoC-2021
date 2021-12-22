@@ -26,4 +26,4 @@ for line in puzzle_input:
 
 median_score = sorted(scores)[(len(scores) + 1) // 2 - 1]
 
-print(f"{median_score=}")
+print(median_score)

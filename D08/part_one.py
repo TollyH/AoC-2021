@@ -8,4 +8,4 @@ for entry in puzzle_input:
         if len(output) in {2, 4, 3, 7}:
             unique_count += 1
 
-print(f"{unique_count=}")
+print(unique_count)

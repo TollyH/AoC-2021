@@ -36,4 +36,4 @@ product = 1
 for basin in basins[:3]:
     product *= len(basin)
 
-print(f"{product=}")
+print(product)

@@ -12,4 +12,4 @@ for column in range(len(puzzle_input[0])):
 gamma_rate = int(gamma_rate_str, 2)
 epsilon_rate = int(epsilon_rate_str, 2)
 
-print(f"{gamma_rate=} {epsilon_rate=}\n{gamma_rate * epsilon_rate=}")
+print(gamma_rate * epsilon_rate)

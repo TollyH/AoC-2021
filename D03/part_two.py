@@ -30,7 +30,4 @@ for column in range(len(puzzle_input[0])):
 oxygen_gen_rate = int(oxygen_gen_rate_list[0], 2)
 c02_scrub_rate = int(c02_scrub_rate_list[0], 2)
 
-print(
-    f"{oxygen_gen_rate=} {c02_scrub_rate=}\n" +
-    f"{oxygen_gen_rate * c02_scrub_rate=}"
-)
+print(oxygen_gen_rate * c02_scrub_rate)

@@ -47,4 +47,4 @@ for entry in puzzle_input:
                 break
     output_sum += int(string_number)
 
-print(f"{output_sum=}")
+print(output_sum)

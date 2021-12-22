@@ -37,7 +37,7 @@ for draw in random_sequence:
                 )
                 if len(boards) == 1:
                     has_finished = True
-                    print(f"{total_unmarked * draw=}")
+                    print(total_unmarked * draw)
                 else:
                     now_winning_boards.append(board)
         if has_finished:

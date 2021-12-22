@@ -46,4 +46,4 @@ for i in range(100):
     for x, y in already_flashed:
         octopuses[y][x] = 0
 
-print(f"{flashes=}")
+print(flashes)

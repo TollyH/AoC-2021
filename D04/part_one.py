@@ -35,7 +35,7 @@ for draw in random_sequence:
                 total_unmarked = sum(
                     [x for y in board for x in y if x not in drawn_numbers]
                 )
-                print(f"{total_unmarked * draw=}")
+                print(total_unmarked * draw)
                 break
         if has_won:
             break
