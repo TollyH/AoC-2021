@@ -1,5 +1,3 @@
-# Advent of Code 2021
+# Advent of Code 2021 Visualisations
 
-My solutions written in Python - they are not necessarily the optimal solutions, nor are they necessarily particularly well written, as long as they give the correct answer, they're good enough for me. I am solving every day with as minimal help as possible, and, for an additional challenge, attempting to do so without importing any libraries, not even ones in the Python Standard Library.
-
-I am not including my puzzle input with the solutions, as they should work with anyone's (it looks for it in a file called `input.txt` in the same folder as the script).
+This branch contains my attempts to make a somewhat pleasant looking visualisation (such as a graph or a video) for each day of Advent of Code 2021. I have removed the "no imports" target present for the main solutions in order to make the goal at least somewhat attainable.
