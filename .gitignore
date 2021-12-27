@@ -1,2 +1,10 @@
 input.txt
 !D24/input.txt
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.avi
+*.wav
+*.mp3
