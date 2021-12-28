@@ -1,8 +1,40 @@
+import os
+
+from PIL import Image
+
 with open("input.txt") as file:
     puzzle_input = file.read().strip().splitlines()
 
+if not os.path.isdir("output_part_two"):
+    os.mkdir("output_part_two")
+
+COLORS = [
+    (71, 19, 240),
+    (100, 60, 230),
+    (108, 90, 230),
+    (73, 150, 227),
+    (104, 163, 222),
+    (196, 222, 104),
+    (211, 230, 147),
+    (224, 220, 155),
+    (230, 226, 170),
+    (242, 240, 216)
+]
+
 octopuses = [[int(x) for x in y] for y in puzzle_input]
 octopuses_count = len(puzzle_input) * len(puzzle_input[0])
+
+
+def save_octo_image(octopus_map, step_counter):
+    img = Image.new("RGB", (len(octopus_map[0]) * 50, len(octopus_map) * 50))
+    for img_y, octo_row in enumerate(octopus_map):
+        for img_x, octo in enumerate(octo_row):
+            for ix in range(50):
+                for iy in range(50):
+                    img.putpixel(
+                        (img_x * 50 + ix, img_y * 50 + iy), COLORS[octo]
+                    )
+    img.save(f"output_part_two/{step_counter:04d}.png")
 
 
 def flash(x_coord, y_coord):
@@ -45,5 +77,10 @@ while len(already_flashed) != octopuses_count:
     for x, y in already_flashed:
         octopuses[y][x] = 0
     i += 1
+    save_octo_image(octopuses, i)
+
+os.system(
+    "ffmpeg -f image2 -framerate 10 -i output_part_two/%04d.png part_two.gif"
+)
 
 print(i)
