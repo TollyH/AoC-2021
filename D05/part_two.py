@@ -1,3 +1,5 @@
+from PIL import Image
+
 with open("input.txt") as file:
     puzzle_input = file.read().strip().splitlines()
 
@@ -33,5 +35,23 @@ for line in puzzle_input:
         for y, x in zip(range(one[1], two[1] + pos_or_neg_y, pos_or_neg_y),
                         range(one[0], two[0] + pos_or_neg_x, pos_or_neg_x)):
             points[y][x] += 1
+
+max_overlaps = max(x for y in points for x in y)
+
+img = Image.new(
+    "RGB", (len(points[0]), len(points)), (255, 255, 255)
+)
+for y, row in enumerate(points):
+    for x, point in enumerate(row):
+        if point >= 1:
+            img.putpixel(
+                (x, y),
+                (
+                    255,
+                    int(255 - (point / max_overlaps * 255)),
+                    int(255 - (point / max_overlaps * 255))
+                )
+            )
+img.save("part_two.png")
 
 print(sum(1 for y in points for x in y if x > 1))
