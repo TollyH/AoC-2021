@@ -1,5 +1,27 @@
+import os
+
+from PIL import Image
+
 with open("input.txt") as file:
     puzzle_input = file.read().strip().splitlines()
+
+if not os.path.isdir("output_part_two"):
+    os.mkdir("output_part_two")
+
+shape = """#############
+#...........#
+###.#.#.#.###
+  #.#.#.#.#
+  #.#.#.#.#
+  #.#.#.#.#
+  #########""".splitlines()
+img_base = Image.new("RGB", (832, 448), (255, 255, 255))
+for y, row in enumerate(shape):
+    for x, char in enumerate(row):
+        if char == "#":
+            for ix in range(64):
+                for iy in range(64):
+                    img_base.putpixel((x * 64 + ix, y * 64 + iy), (0, 0, 0))
 
 amphipods = ["A", "B", "C", "D"]
 costs = [1, 10, 100, 1000]
@@ -93,7 +115,7 @@ def perform_move(current_hallway, current_rooms, current_pos, current_room,
     return new_hallway, new_rooms
 
 
-def path_find(state_hallway, state_rooms, current_energy):
+def path_find(state_hallway, state_rooms, current_energy, full_path):
     if not any(state_hallway):
         complete = True
         for index in range(4):
@@ -102,8 +124,9 @@ def path_find(state_hallway, state_rooms, current_energy):
                 break
         if complete:
             energies.append(current_energy)
-            return [current_energy]
+            return [current_energy], [full_path]
     new_energies = []
+    valid_paths = []
     for room_index, room in enumerate(state_rooms):
         for inner_room_index, room_space in enumerate(room):
             if room_space is not None:
@@ -116,19 +139,27 @@ def path_find(state_hallway, state_rooms, current_energy):
                                 state_hallway, state_rooms, inner_room_index,
                                 room_index, target[1], target[0]
                             )
-                            new_energies += path_find(
+                            results = path_find(
                                 resulting_hallway, resulting_rooms,
-                                current_energy + energy
+                                current_energy + energy,
+                                full_path +
+                                [(resulting_hallway, resulting_rooms)]
                             )
+                            new_energies += results[0]
+                            valid_paths += results[1]
                         else:
                             resulting_hallway, resulting_rooms = perform_move(
                                 state_hallway, state_rooms, inner_room_index,
                                 room_index, target, None
                             )
-                            new_energies += path_find(
+                            results = path_find(
                                 resulting_hallway, resulting_rooms,
-                                current_energy + energy
+                                current_energy + energy,
+                                full_path +
+                                [(resulting_hallway, resulting_rooms)]
                             )
+                            new_energies += results[0]
+                            valid_paths += results[1]
     for hallway_index, hallway_space in enumerate(state_hallway):
         if hallway_space is not None:
             for target, energy in get_possible_moves(
@@ -140,21 +171,74 @@ def path_find(state_hallway, state_rooms, current_energy):
                             state_hallway, state_rooms, hallway_index, None,
                             target[1], target[0]
                         )
-                        new_energies += path_find(
+                        results = path_find(
                             resulting_hallway, resulting_rooms,
-                            current_energy + energy
+                            current_energy + energy,
+                            full_path +
+                            [(resulting_hallway, resulting_rooms)]
                         )
+                        new_energies += results[0]
+                        valid_paths += results[1]
                     else:
                         resulting_hallway, resulting_rooms = perform_move(
                             state_hallway, state_rooms, hallway_index, None,
                             target, None
                         )
-                        new_energies += path_find(
+                        results = path_find(
                             resulting_hallway, resulting_rooms,
-                            current_energy + energy
+                            current_energy + energy,
+                            full_path +
+                            [(resulting_hallway, resulting_rooms)]
                         )
-    return new_energies
+                        new_energies += results[0]
+                        valid_paths += results[1]
+    return new_energies, valid_paths
 
 
 energies = [100000]
-print(min(path_find(hallway, rooms, 0)))
+result = path_find(hallway, rooms, 0, [(hallway, rooms)])
+
+for frame, state in enumerate(result[1][result[0].index(min(result[0]))]):
+    img = img_base.copy()
+    for hall_index, hall_space in enumerate(state[0]):
+        if hall_space == "A":
+            colour = (209, 43, 31)
+        elif hall_space == "B":
+            colour = (66, 207, 48)
+        elif hall_space == "C":
+            colour = (46, 65, 191)
+        elif hall_space == "D":
+            colour = (191, 46, 186)
+        else:
+            continue
+        for ix in range(64):
+            for iy in range(64):
+                img.putpixel((hall_index * 64 + 64 + ix, iy + 64), colour)
+    for state_room_index, state_room in enumerate(state[1]):
+        for room_space_index, room_item in enumerate(state_room):
+            if room_item == "A":
+                colour = (209, 43, 31)
+            elif room_item == "B":
+                colour = (66, 207, 48)
+            elif room_item == "C":
+                colour = (46, 65, 191)
+            elif room_item == "D":
+                colour = (191, 46, 186)
+            else:
+                continue
+            for ix in range(64):
+                for iy in range(64):
+                    img.putpixel(
+                        (
+                            state_room_index * 128 + ix + 192,
+                            room_space_index * 64 + iy + 128
+                        ),
+                        colour
+                    )
+    img.save(f"output_part_two/{frame:04d}.png")
+
+os.system(
+    "ffmpeg -f image2 -framerate 1 -i output_part_two/%04d.png part_two.gif"
+)
+
+print(min(result[0]))
